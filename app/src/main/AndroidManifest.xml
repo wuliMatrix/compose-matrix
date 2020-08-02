@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="love.matrix.matrix">
+
+    <!-- 声明一个app在运行时所依赖的外部的硬件或软件特征（feature） -->
+    <uses-feature android:name="android.hardware.camera" />
+
+    <!-- Declare permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- This tag indicates that this application requires ARCore. This results in the application
+        only being visible in the Google Play Store on devices that support ARCore.
+         此标记表明此应用程序需要ARCore。这导致该应用程序仅在支持ARCore的设备上的Google Play商店中可见。-->
+    <uses-feature android:name="android.hardware.camera.ar" android:required="true"/>
+
+    <application
+        android:name=".MainApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_matrix_icon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_matrix_icon_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Matrix">
+
+        <!-- This tag indicates that this application requires ARCore. This results in the
+           application only being visible in the Google Play Store on devices that support
+           ARCore.
+           此标记表明此应用程序需要ARCore。这导致该应用程序仅在支持ARCore的设备上的Google Play商店中可见 -->
+        <meta-data android:name="com.google.ar.core" android:value="optional"/>
+
+        <activity
+            android:label="@string/app_name"
+            android:name=".SplashActivity"
+            android:theme="@style/AppTheme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/TranslucentTheme">
+        </activity>
+        <activity
+            android:name=".activity.PlayVideoActivity"
+            android:theme="@style/TranslucentTheme">
+        </activity>
+        <activity
+            android:name=".activity.AAA"
+            android:theme="@style/TranslucentTheme">
+        </activity>
+        <activity
+            android:name=".activity.TakePhotoActivity"
+            android:theme="@style/AppTheme.FullScreen">
+        </activity>
+        <activity
+            android:name=".ar.GltfActivity"
+            android:theme="@style/AppTheme.FullScreen">
+        </activity>
+
+        <!--与ar模块一起导入的，保存文件的时候使用到-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths" />
+        </provider>
+
+    </application>
+
+</manifest>

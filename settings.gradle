@@ -1,0 +1,3 @@
+rootProject.name = "Matrix"
+include ':app',':sceneform',':sceneformux'
+include ':lib'
